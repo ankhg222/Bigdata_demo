@@ -1,0 +1,21 @@
+=== BÁO CÁO ĐỘ PHỨC TẠP CÔNG VIỆC (COMPLEXITY SCORING) ===
+(Đánh giá dựa trên Mật độ từ vựng chuyên môn TF-IDF, Số lượng kỹ năng và Năm kinh nghiệm)
+
+--- MỨC ĐỘ: 1 - Basic (Dễ) ---
+Số lượng tin tuyển dụng: 1003 jobs
+-> Trung bình Năm kinh nghiệm (YOE) : 2.41 năm
+-> Trung bình Số lượng kỹ năng      : 4.20 skills
+-> Độ đậm đặc từ vựng chuyên môn    : 7.33 điểm TF-IDF
+
+--- MỨC ĐỘ: 2 - Intermediate (Trung Bình) ---
+Số lượng tin tuyển dụng: 478 jobs
+-> Trung bình Năm kinh nghiệm (YOE) : 5.34 năm
+-> Trung bình Số lượng kỹ năng      : 4.18 skills
+-> Độ đậm đặc từ vựng chuyên môn    : 7.60 điểm TF-IDF
+
+--- MỨC ĐỘ: 3 - Advanced (Khó nhằn) ---
+Số lượng tin tuyển dụng: 583 jobs
+-> Trung bình Năm kinh nghiệm (YOE) : 3.96 năm
+-> Trung bình Số lượng kỹ năng      : 5.80 skills
+-> Độ đậm đặc từ vựng chuyên môn    : 11.60 điểm TF-IDF
+

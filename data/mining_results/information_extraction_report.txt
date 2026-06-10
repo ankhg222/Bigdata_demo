@@ -1,0 +1,20 @@
+=== BÁO CÁO TRÍCH XUẤT THÔNG TIN (INFORMATION EXTRACTION) ===
+
+Tổng số job quét: 2064
+
+--- PHÚC LỢI PHỔ BIẾN (BENEFITS) ---
+healthcare_insurance     :  566 jobs (27.4%)
+training_certificate     :  564 jobs (27.3%)
+bonus_performance        :  382 jobs (18.5%)
+annual_leave             :  354 jobs (17.2%)
+hybrid_remote            :  296 jobs (14.3%)
+team_building            :  243 jobs (11.8%)
+laptop_macbook           :  206 jobs (10.0%)
+13th_month               :  183 jobs (8.9%)
+
+--- KỸ NĂNG MỀM / NGOẠI NGỮ (SOFT SKILLS / LANGUAGES) ---
+communication            :  530 jobs (25.7%)
+english                  :  420 jobs (20.3%)
+teamwork                 :  133 jobs (6.4%)
+problem_solving          :  107 jobs (5.2%)
+japanese                 :   73 jobs (3.5%)

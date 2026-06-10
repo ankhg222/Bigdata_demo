@@ -1,0 +1,7 @@
+=== ASSOCIATION RULES REPORT ===
+
+Total transactions: 2060
+Frequent Itemsets found: 5
+Rules generated (lift > 1): 0
+
+Top 20 Rules by Lift:

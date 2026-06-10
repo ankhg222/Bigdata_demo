@@ -1,0 +1,71 @@
+=== BÁO CÁO TỪ KHÓA ĐẶC TRƯNG THEO CẤP BẬC (LEVEL PROFILING) ===
+(Dựa trên thuật toán TF-IDF, lọc ra những từ định hình sự khác biệt giữa các level)
+
+--- FRESHER ---
+- các                 : 0.3015
+- và                  : 0.2946
+- công                : 0.1645
+- có                  : 0.1507
+- năng                : 0.1302
+- data                : 0.1233
+- triển               : 0.1233
+- work                : 0.1096
+- automation          : 0.1028
+- gia                 : 0.1028
+- hàng                : 0.1028
+- tham                : 0.1028
+- tham gia            : 0.1028
+- về                  : 0.1028
+- working             : 0.1028
+
+--- JUNIOR ---
+- và                  : 0.4402
+- các                 : 0.3246
+- công                : 0.1697
+- hàng                : 0.1374
+- triển               : 0.1300
+- hệ                  : 0.1204
+- thống               : 0.1091
+- của                 : 0.1086
+- bảo                 : 0.1069
+- việc                : 0.1069
+- hệ thống            : 0.1060
+- lý                  : 0.1034
+- theo                : 0.1021
+- liệu                : 0.0999
+- vụ                  : 0.0968
+
+--- MANAGER ---
+- và                  : 0.3183
+- các                 : 0.2322
+- management          : 0.1516
+- project             : 0.1509
+- công                : 0.1434
+- business            : 0.1386
+- lý                  : 0.1318
+- dự                  : 0.1311
+- việc                : 0.1298
+- team                : 0.1277
+- án                  : 0.1263
+- experience          : 0.1250
+- dự án               : 0.1236
+- product             : 0.1195
+- quản                : 0.1182
+
+--- SENIOR ---
+- và                  : 0.2954
+- experience          : 0.2687
+- các                 : 0.2400
+- data                : 0.1694
+- ai                  : 0.1478
+- development         : 0.1338
+- work                : 0.1194
+- công                : 0.1105
+- technical           : 0.1074
+- triển               : 0.1068
+- working             : 0.1062
+- performance         : 0.1056
+- design              : 0.1031
+- team                : 0.0965
+- business            : 0.0939
+

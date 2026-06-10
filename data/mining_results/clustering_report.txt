@@ -1,0 +1,13 @@
+=== JOB MARKET CLUSTERING REPORT ===
+
+Total samples: 2064
+Optimal K selected: 4
+Silhouette Score: 0.4257
+
+Cluster Profiles (Mean values):
+         salary_final_vnd  yoe_extracted  skill_count  is_remote  job_level_encoded
+Cluster                                                                            
+0            3.221098e+07       3.010839     4.728558        0.0           6.838831
+1            1.908414e+07       1.439297     3.993610        0.0           0.971246
+2            3.651178e+07       3.820000     5.200000        1.0           6.080000
+3            5.172728e+07       5.317293     4.803008        0.0           5.064662
