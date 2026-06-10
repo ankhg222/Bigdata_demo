@@ -1,0 +1,28 @@
+============================================================
+  TOP 20 KY NANG IT DUOC YEU CAU NHIEU NHAT
+============================================================
+  Tong so job phan tich: 1928
+============================================================
+Rank  Ky nang                          So job  Ti le (%)
+------------------------------------------------------------
+1     english                             239      12.4%
+2     python                              199      10.3%
+3     sql                                 188       9.8%
+4     java                                154       8.0%
+5     ai                                  143       7.4%
+6     project management                  117       6.1%
+7     hệ thống cntt & thiết bị            101       5.2%
+8     agile                                99       5.1%
+9     javascript                           97       5.0%
+10    aws                                  96       5.0%
+11    quản lý dự án công nghệ              93       4.8%
+12    business analysis                    91       4.7%
+13    cloud                                87       4.5%
+14    kinh doanh                           86       4.5%
+15    data analysis                        84       4.4%
+16    reactjs                              74       3.8%
+17    head hunter                          69       3.6%
+18    database                             65       3.4%
+19    api                                  61       3.2%
+20    devops                               60       3.1%
+============================================================

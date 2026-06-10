@@ -1,0 +1,16 @@
+skill,job_count,avg_salary_M,min_salary_M,median_salary_M,max_salary_M
+leadership,44,52.95,19.06,56.52,88.9
+team management,52,50.95,13.97,53.34,95.25
+kafka,14,47.85,31.75,47.63,101.6
+software architecture,26,47.5,25.4,46.99,95.25
+stakeholder management,24,47.23,24.13,53.34,76.2
+project management,117,46.79,17.78,53.34,88.87
+japanese,20,46.58,31.75,45.72,76.2
+solution architecture,35,46.21,24.13,31.75,127.0
+aws,96,46.2,20.32,47.63,127.0
+risk management,18,45.26,31.75,47.63,59.69
+data science,26,45.11,31.75,47.63,101.6
+bất động sản/cho thuê,16,44.77,17.78,50.8,101.6
+system architecture,22,44.71,13.97,50.8,101.6
+quốc tế,10,44.68,31.75,31.75,67.03
+playwright,11,44.57,13.97,47.63,57.15
