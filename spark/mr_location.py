@@ -1,34 +1,62 @@
-import sys
-import io
+import os
+os.environ["PYTHONIOENCODING"] = "utf-8"
+
 from pyspark.sql import SparkSession
 
-# Fix Unicode output on Windows (cp1252 -> utf-8)
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+MONGO_URI = (
+    "mongodb+srv://khangnguyen2x0_db_user:khangnguyen2x0_db_user"
+    "@cluster0.yyrcrds.mongodb.net/"
+)
+MONGO_DB         = "BigDataJobMarket"
+MONGO_COL_INPUT  = "Jobs"
+MONGO_COL_OUTPUT = "location_result"
+
+OUTPUT_TXT = "D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/location_result.txt"
 
 spark = SparkSession.builder \
     .appName("MR_Location") \
+    .config("spark.sql.shuffle.partitions", "4") \
+    .config("spark.mongodb.read.connection.uri",  MONGO_URI) \
+    .config("spark.mongodb.write.connection.uri", MONGO_URI) \
     .getOrCreate()
 
-df = spark.read.option("header", "true") \
-    .csv("file:///D:/HDFS/JOB_MARKET_BIGDATA/data/processed/Data_ITJOB_Cleaned.csv")
+spark.sparkContext.setLogLevel("WARN")
+
+print(f"[INFO] Reading from MongoDB: {MONGO_DB}.{MONGO_COL_INPUT}")
+df = spark.read \
+    .format("mongodb") \
+    .option("database",   MONGO_DB) \
+    .option("collection", MONGO_COL_INPUT) \
+    .load()
 
 result = df.groupBy("location_clean") \
            .count() \
            .orderBy("count", ascending=False)
 
 # Ghi kết quả ra file txt (UTF-8) thay vì in ra terminal để tránh lỗi encoding
-output_path = "D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/location_result.txt"
-with open(output_path, "w", encoding="utf-8") as f:
+with open(OUTPUT_TXT, "w", encoding="utf-8") as f:
     rows = result.collect()
     f.write(f"{'location_clean':<45} {'count':>6}\n")
     f.write("-" * 53 + "\n")
     for row in rows:
         f.write(f"{str(row['location_clean']):<45} {row['count']:>6}\n")
 
-print(f"[OK] Da ghi ket qua vao: {output_path}")
+print(f"[OK] Da ghi ket qua vao: {OUTPUT_TXT}")
 
-result.write.mode("overwrite") \
-    .csv("file:///D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/location_result")
+print(f"[INFO] Writing results to MongoDB: {MONGO_DB}.{MONGO_COL_OUTPUT}")
+result.write \
+    .format("mongodb") \
+    .option("database",   MONGO_DB) \
+    .option("collection", MONGO_COL_OUTPUT) \
+    .mode("overwrite") \
+    .save()
+print(f"[OK] MongoDB written: {MONGO_DB}.{MONGO_COL_OUTPUT}")
+
+# ── Upload len HDFS ──────────────────────────────────────────────────────────
+HDFS_OUTPUT_DIR = "/project/output/"
+print(f"[INFO] Uploading TXT to HDFS: {HDFS_OUTPUT_DIR}")
+os.system(f"hdfs dfs -mkdir -p {HDFS_OUTPUT_DIR}")
+os.system(f"hdfs dfs -put -f {OUTPUT_TXT} {HDFS_OUTPUT_DIR}")
+print("[OK] HDFS upload command executed.")
 
 spark.stop()

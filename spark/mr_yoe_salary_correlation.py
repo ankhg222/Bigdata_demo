@@ -17,19 +17,32 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 
+MONGO_URI = (
+    "mongodb+srv://khangnguyen2x0_db_user:khangnguyen2x0_db_user"
+    "@cluster0.yyrcrds.mongodb.net/"
+)
+MONGO_DB         = "BigDataJobMarket"
+MONGO_COL_INPUT  = "Jobs"
+MONGO_COL_OUTPUT = "yoe_salary_correlation"
+
+OUTPUT_TXT = "D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/yoe_salary_correlation.txt"
+
 spark = SparkSession.builder \
     .appName("MR_YOE_Salary") \
     .config("spark.sql.shuffle.partitions", "4") \
+    .config("spark.mongodb.read.connection.uri",  MONGO_URI) \
+    .config("spark.mongodb.write.connection.uri", MONGO_URI) \
     .getOrCreate()
 
 spark.sparkContext.setLogLevel("WARN")
 
-DATA_PATH  = "file:///D:/HDFS/JOB_MARKET_BIGDATA/data/processed/Data_ITJOB_Cleaned.csv"
-OUTPUT_CSV = "file:///D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/yoe_salary_correlation"
-OUTPUT_TXT = "D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/yoe_salary_correlation.txt"
-
 # ── Doc & lam sach ────────────────────────────
-df = spark.read.option("header", "true").csv(DATA_PATH)
+print(f"[INFO] Reading from MongoDB: {MONGO_DB}.{MONGO_COL_INPUT}")
+df = spark.read \
+    .format("mongodb") \
+    .option("database",   MONGO_DB) \
+    .option("collection", MONGO_COL_INPUT) \
+    .load()
 
 df_clean = df \
     .filter(
@@ -93,9 +106,15 @@ result_df = result_df.withColumn(
     )
 ).drop("bucket_order")
 
-# ── Ghi CSV ──────────────────────────────────
-result_df.write.mode("overwrite").option("header", "true").csv(OUTPUT_CSV)
-print("[OK] CSV written: " + OUTPUT_CSV)
+# ── Ghi vao MongoDB ──────────────────────────────────
+print(f"[INFO] Writing results to MongoDB: {MONGO_DB}.{MONGO_COL_OUTPUT}")
+result_df.write \
+    .format("mongodb") \
+    .option("database",   MONGO_DB) \
+    .option("collection", MONGO_COL_OUTPUT) \
+    .mode("overwrite") \
+    .save()
+print(f"[OK] MongoDB written: {MONGO_DB}.{MONGO_COL_OUTPUT}")
 
 # ── Ghi TXT UTF-8 ────────────────────────────
 rows = result_df.collect()
@@ -121,4 +140,12 @@ with open(OUTPUT_TXT, "w", encoding="utf-8") as f:
     f.write("=" * 88 + "\n")
 
 print("[OK] TXT written: " + OUTPUT_TXT)
+
+# ── Upload len HDFS ──────────────────────────────────────────────────────────
+HDFS_OUTPUT_DIR = "/project/output/"
+print(f"[INFO] Uploading TXT to HDFS: {HDFS_OUTPUT_DIR}")
+os.system(f"hdfs dfs -mkdir -p {HDFS_OUTPUT_DIR}")
+os.system(f"hdfs dfs -put -f {OUTPUT_TXT} {HDFS_OUTPUT_DIR}")
+print("[OK] HDFS upload command executed.")
+
 spark.stop()

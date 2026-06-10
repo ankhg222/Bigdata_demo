@@ -16,19 +16,33 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 
+MONGO_URI = (
+    "mongodb+srv://khangnguyen2x0_db_user:khangnguyen2x0_db_user"
+    "@cluster0.yyrcrds.mongodb.net/"
+)
+MONGO_DB         = "BigDataJobMarket"
+MONGO_COL_INPUT  = "Jobs"
+MONGO_COL_OUTPUT = "salary_by_level"
+
+OUTPUT_TXT = "D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/salary_by_level.txt"
+
+# ── Khoi tao SparkSession voi MongoDB Connector ───────────────────────────────
 spark = SparkSession.builder \
     .appName("MR_SalaryByLevel") \
     .config("spark.sql.shuffle.partitions", "4") \
+    .config("spark.mongodb.read.connection.uri",  MONGO_URI) \
+    .config("spark.mongodb.write.connection.uri", MONGO_URI) \
     .getOrCreate()
 
 spark.sparkContext.setLogLevel("WARN")
 
-DATA_PATH  = "file:///D:/HDFS/JOB_MARKET_BIGDATA/data/processed/Data_ITJOB_Cleaned.csv"
-OUTPUT_CSV = "file:///D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/salary_by_level"
-OUTPUT_TXT = "D:/HDFS/JOB_MARKET_BIGDATA/data/parquet/salary_by_level.txt"
-
-# ── Doc & lam sach du lieu ────────────────────
-df = spark.read.option("header", "true").csv(DATA_PATH)
+# ── Doc du lieu tu MongoDB ─────────────────────────────────────────────────────
+print(f"[INFO] Reading from MongoDB: {MONGO_DB}.{MONGO_COL_INPUT}")
+df = spark.read \
+    .format("mongodb") \
+    .option("database",   MONGO_DB) \
+    .option("collection", MONGO_COL_INPUT) \
+    .load()
 
 # MAP: Chon (job_level, salary) - cast sang dung kieu
 df_mapped = df \
@@ -53,9 +67,15 @@ result_df = df_mapped.groupBy("job_level").agg(
 window_spec = Window.orderBy(F.col("avg_salary_M").desc())
 result_df = result_df.withColumn("rank", F.rank().over(window_spec))
 
-# ── Ghi CSV ──────────────────────────────────
-result_df.write.mode("overwrite").option("header", "true").csv(OUTPUT_CSV)
-print("[OK] CSV written: " + OUTPUT_CSV)
+# ── Ghi ket qua vao MongoDB ───────────────────────────────────────────────────
+print(f"[INFO] Writing results to MongoDB: {MONGO_DB}.{MONGO_COL_OUTPUT}")
+result_df.write \
+    .format("mongodb") \
+    .option("database",   MONGO_DB) \
+    .option("collection", MONGO_COL_OUTPUT) \
+    .mode("overwrite") \
+    .save()
+print(f"[OK] MongoDB written: {MONGO_DB}.{MONGO_COL_OUTPUT}")
 
 # ── Ghi TXT UTF-8 ────────────────────────────
 rows = result_df.collect()
@@ -80,4 +100,12 @@ with open(OUTPUT_TXT, "w", encoding="utf-8") as f:
     f.write("=" * 82 + "\n")
 
 print("[OK] TXT written: " + OUTPUT_TXT)
+
+# ── Upload len HDFS ──────────────────────────────────────────────────────────
+HDFS_OUTPUT_DIR = "/project/output/"
+print(f"[INFO] Uploading TXT to HDFS: {HDFS_OUTPUT_DIR}")
+os.system(f"hdfs dfs -mkdir -p {HDFS_OUTPUT_DIR}")
+os.system(f"hdfs dfs -put -f {OUTPUT_TXT} {HDFS_OUTPUT_DIR}")
+print("[OK] HDFS upload command executed.")
+
 spark.stop()
