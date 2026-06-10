@@ -1,0 +1,26 @@
+=== SALARY PREDICTION REPORT ===
+
+Total samples used: 2064
+Features used: 43
+
+Model: Linear Regression
+  MAE:  4,298,729.77 VND
+  RMSE: 7,486,266.08 VND
+  R2:   0.6780
+
+Model: Random Forest
+  MAE:  3,771,788.92 VND
+  RMSE: 7,894,290.94 VND
+  R2:   0.6420
+
+Model: Gradient Boosting
+  MAE:  3,685,447.00 VND
+  RMSE: 7,609,841.34 VND
+  R2:   0.6673
+
+Model: XGBoost
+  MAE:  4,345,286.84 VND
+  RMSE: 8,809,585.61 VND
+  R2:   0.5541
+
+Best Model: Linear Regression (R2: 0.6780)

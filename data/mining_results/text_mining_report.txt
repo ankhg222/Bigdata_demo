@@ -1,0 +1,20 @@
+=== TEXT MINING REPORT ===
+
+Total documents: 2064
+Number of topics: 5
+
+Topic 0:
+power, bi, erp, sql, copilot, tasks, work, python, related, ios
+
+Topic 1:
+experience, development, working, work, salary, skills, design, technical, strong, performance
+
+Topic 2:
+data, business, product, support, team, management, technical, ai, ensure, systems
+
+Topic 3:
+và, các, có, việc, năng, công, làm, nghiệm, kinh, triển
+
+Topic 4:
+và, các, công, triển, hệ, lý, liệu, thống, quản, hàng
+

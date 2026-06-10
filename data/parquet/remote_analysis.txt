@@ -5,29 +5,31 @@
 -- TONG QUAN --
 Loai          So job   Ti le   Avg(M)  Median(M)  Avg Skills  Avg YOE
 ----------------------------------------------------------------------
-On-site         1921   99.6%     37.9       31.8         5.6      3.8
-Remote             7    0.4%     35.9       31.8         5.9      3.6
+On-site         2039   98.8%     36.6       31.8         4.6      3.5
+Remote            25    1.2%     36.5       31.8         5.2      3.8
 
 -- BREAKDOWN THEO CAP BAC --
 Cap bac           Remote   On-site  AvgRemote(M)  AvgOnsite(M)
 --------------------------------------------------------------
-Undefined              6      1004          33.4          32.9
-Senior                 1       379          50.8          49.9
-Junior                 0       215           N/A          20.2
-Manager                0       205           N/A          55.4
-Lead                   0        92           N/A          52.3
+Undefined             18       992          29.8          32.9
+Senior                 1       408          45.8          46.2
+Junior                 0       274           N/A          19.7
+Manager                3       202          53.3          55.4
+Lead                   2        93          60.1          52.2
+Mid-level              0        29           N/A          31.5
 Fresher                0        26           N/A          13.0
+Junior/Fresher         1        15          50.0          21.4
 
 -- TOP 10 KY NANG PHO BIEN TRONG JOB REMOTE --
-   1. english                      5 jobs
-   2. python                       3 jobs
-   3. ai                           2 jobs
-   4. pytorch                      2 jobs
-   5. fullstack                    1 jobs
-   6. fastapi                      1 jobs
-   7. typescript                   1 jobs
-   8. leadership                   1 jobs
-   9. ios                          1 jobs
-  10. scikitlearn                  1 jobs
+   1. english                      8 jobs
+   2. python                       4 jobs
+   3. javascript                   2 jobs
+   4. typescript                   2 jobs
+   5. embedded                     2 jobs
+   6. pytorch                      2 jobs
+   7. aweplus cx solution          2 jobs
+   8. figma                        2 jobs
+   9. growth mindset               2 jobs
+  10. customer service             2 jobs
 
-Tong job phan tich: 1928
+Tong job phan tich: 2064

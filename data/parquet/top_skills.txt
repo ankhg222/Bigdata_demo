@@ -1,28 +1,28 @@
 ============================================================
   TOP 20 KY NANG IT DUOC YEU CAU NHIEU NHAT
 ============================================================
-  Tong so job phan tich: 1928
+  Tong so job phan tich: 2064
 ============================================================
 Rank  Ky nang                          So job  Ti le (%)
 ------------------------------------------------------------
-1     english                             239      12.4%
-2     python                              199      10.3%
-3     sql                                 188       9.8%
-4     java                                154       8.0%
-5     ai                                  143       7.4%
-6     project management                  117       6.1%
-7     hệ thống cntt & thiết bị            101       5.2%
-8     agile                                99       5.1%
-9     javascript                           97       5.0%
-10    aws                                  96       5.0%
-11    quản lý dự án công nghệ              93       4.8%
-12    business analysis                    91       4.7%
-13    cloud                                87       4.5%
-14    kinh doanh                           86       4.5%
-15    data analysis                        84       4.4%
-16    reactjs                              74       3.8%
-17    head hunter                          69       3.6%
-18    database                             65       3.4%
-19    api                                  61       3.2%
-20    devops                               60       3.1%
+1     english                             240      11.6%
+2     python                              208      10.1%
+3     sql                                 201       9.7%
+4     java                                169       8.2%
+5     ai                                  156       7.6%
+6     project management                  117       5.7%
+7     agile                               107       5.2%
+8     aws                                 106       5.1%
+9     javascript                          103       5.0%
+10    business analysis                    91       4.4%
+11    cloud                                91       4.4%
+12    data analysis                        84       4.1%
+13    reactjs                              77       3.7%
+14    devops                               67       3.2%
+15    linux                                66       3.2%
+16    database                             66       3.2%
+17    api                                  65       3.1%
+18    machine learning                     61       3.0%
+19    postgresql                           57       2.8%
+20    công nghệ thông tin                  56       2.7%
 ============================================================
